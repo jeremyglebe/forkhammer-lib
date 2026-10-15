@@ -431,7 +431,7 @@ const WarhammerSheetMixinV2 = (cls) => class extends cls
         {
             step *= 10;
         }
-        document.update({[path] : foundry.utils.getProperty(document, path) + step});
+        document.update({[path] : (foundry.utils.getProperty(document, path) || 0) + step});
     }
 
     static async _onListCreate(ev, target)

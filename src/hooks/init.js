@@ -156,6 +156,16 @@ export default function ()
             return args.hash;
         });
 
+        // selectOptions with an array has the value attribute be the index, sometimes this isn't desirable. 
+        // so create an object with the key as the same as the value
+        Handlebars.registerHelper("selectOptionsArray", (arr) => 
+        {
+            return arr.reduce((obj, element) => 
+            {
+                obj[element] = element; return obj;
+            }, {});
+        });
+
         game.settings.registerMenu(game.system.id, "moduleInitializationMenu", {
             name: "WH.Initializer.SettingName",
             label: "WH.Initializer.SettingLabel",

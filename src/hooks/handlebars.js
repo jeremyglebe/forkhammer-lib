@@ -21,7 +21,8 @@ export default function ()
             documentReference : "modules/warhammer-lib/templates/partials/document-reference.hbs",
             nameList : "modules/warhammer-lib/templates/partials/name-list.hbs",
             nameListInput : "modules/warhammer-lib/templates/partials/name-list-input.hbs",
-            nameListSelect : "modules/warhammer-lib/templates/partials/name-list-select.hbs"
+            nameListSelect : "modules/warhammer-lib/templates/partials/name-list-select.hbs",
+            nameListToggle : "modules/warhammer-lib/templates/partials/name-list-toggle.hbs"
         });
     });
 }

@@ -67,6 +67,15 @@ export default class ItemDialog extends HandlebarsApplicationMixin(ApplicationV2
         this._highlightChosen();
     }
 
+    async close(options)
+    {
+        await super.close(options);
+        if (this.options.resolveClose)
+        {
+            this.options.resolve([]);
+        }
+    }
+
     static async submit(event, form, fromData)
     {
         let items = await Promise.all(this.items.filter((_, index) => this.chosen.includes(index)).map(i => 
@@ -88,7 +97,7 @@ export default class ItemDialog extends HandlebarsApplicationMixin(ApplicationV2
         return items;
     }
 
-    static async create(items, count = 1, {title, text, skipSingularItemPrompt, indexed, defaultValue="", useToken}={})
+    static async create(items, count = 1, {title, text, skipSingularItemPrompt, indexed, defaultValue="", useToken, resolveClose=false}={})
     {
 
         if (typeof items == "object" && !Array.isArray(items) && !(items instanceof Collection))
@@ -108,7 +117,7 @@ export default class ItemDialog extends HandlebarsApplicationMixin(ApplicationV2
 
         return new Promise((resolve) => 
         {
-            new this({items, count}, {text, resolve, indexed, defaultValue, useToken}).render(true, {window : {title}});
+            new this({items, count}, {text, resolve, indexed, defaultValue, useToken, resolveClose}).render(true, {window : {title}});
         });
     }
 

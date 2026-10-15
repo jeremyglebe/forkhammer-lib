@@ -1,0 +1,10 @@
+<div class="name-list toggle-list {{classes}}" >
+    <label>{{localize label}}</label>
+    <div class="list-content">
+        {{#each list}}
+            <div data-action="toggleProperty" class="list-element toggle {{#if this}}active{{/if}}" data-path="{{../path}}.{{@key}}">
+                {{lookup ../elementLabels @key}}
+            </div>
+        {{/each}}
+    </div>
+</div>

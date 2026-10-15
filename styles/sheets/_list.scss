@@ -206,14 +206,16 @@
     }
 
     .name-list {
+        --label-height: 2rem;
+
         display: flex;
         flex-direction: column;
         margin: 0.5rem 0px;
         border: 1px solid var(--name-border);
         label {
             text-align: center;
-            height: 2rem;
-            line-height: 2rem;
+            height: var(--label-height);
+            line-height: var(--label-height);
             background: var(--name-label);
         }   
         .list-content {
@@ -227,7 +229,7 @@
             padding: 0.5rem 0.5rem;
 
             .list-element {
-                &:not(.input)
+                &:not(.input,.toggle)
                 {
 
                     border: 1px solid var(--name-border);
