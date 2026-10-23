@@ -1,11 +1,27 @@
 {
-  "id": "warhammer-lib",
-  "title": "Warhammer Library",
-  "description": "Common code used by the various Warhammer Systems",
-  "version": "@VERSION",
-  "authors": [{"name": "Moo Man", "id": "Moo Man", "discord": "moo.man"}],
-  "scripts" : ["warhammer-lib.js"],
-  "styles" : [{"src": "warhammer.css", "layer" : "system"}],
+  "id": "forkhammer-lib",
+  "title": "Forkhammer Lib",
+  "description": "A shared local fork of Warhammer Library for custom Foundry VTT systems.",
+  "version": "3.5.1.1",
+  "authors": [
+    {
+      "name": "Moo Man",
+      "id": "Moo Man",
+      "discord": "moo.man"
+    },
+    {
+      "name": "Jeremy Glebe"
+    }
+  ],
+  "scripts": [
+    "forkhammer-lib.js"
+  ],
+  "styles": [
+    {
+      "src": "forkhammer.css",
+      "layer": "system"
+    }
+  ],
   "languages": [
     {
       "lang": "en",
@@ -22,33 +38,23 @@
   "relationships": {
     "systems": [
       {
-        "id": "wfrp4e",
+        "id": "fvtt-template",
         "type": "system"
       },
       {
-        "id": "whtow",
-        "type": "system"
-      },
-      {
-        "id": "impmal",
-        "type": "system"
-      },
-      {
-        "id": "wrath-and-glory",
-        "type": "system"
-      },
-      {
-        "id": "age-of-sigmar-soulbound",
+        "id": "rifts",
         "type": "system"
       }
     ]
   },
-  "flags" : {
-    "hotReload": { 
-      "extensions": ["css", "hbs", "json"]
+  "flags": {
+    "hotReload": {
+      "extensions": [
+        "css",
+        "hbs",
+        "json"
+      ]
     }
   },
-  "socket": true,
-  "manifest": "https://github.com/moo-man/WarhammerLibrary-FVTT/releases/latest/download/module.json",
-  "download": "https://github.com/moo-man/WarhammerLibrary-FVTT/releases/download/@VERSION/warhammer-lib.zip"
+  "socket": true
 }

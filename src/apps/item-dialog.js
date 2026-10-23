@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import addSheetHelpers from "../util/sheet-helpers";
 import { systemConfig } from "../util/utility";
 const {getProperty} = foundry.utils;
@@ -7,7 +8,7 @@ export default class ItemDialog extends HandlebarsApplicationMixin(ApplicationV2
 {
 
     static DEFAULT_OPTIONS = {
-        classes: ["item-dialog", "warhammer"],
+        classes: ["item-dialog", "forkhammer"],
         tag : "form",
         form : {
             handler : this.submit,
@@ -30,7 +31,7 @@ export default class ItemDialog extends HandlebarsApplicationMixin(ApplicationV2
 
     static PARTS = {
         form: {
-            template: "modules/warhammer-lib/templates/apps/dialog/item-dialog.hbs",
+            template: "modules/forkhammer-lib/templates/apps/dialog/item-dialog.hbs",
             scrollable : [".dialog-list"]
         }
     };

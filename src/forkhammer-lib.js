@@ -1,5 +1,6 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 /* eslint-disable no-undef */
-import "../styles/warhammer.scss";
+import "../styles/forkhammer.scss";
 import WarhammerScript from "./system/script";
 import ItemDialog from "./apps/item-dialog";
 import ValueDialog from "./apps/value-dialog";
@@ -69,20 +70,9 @@ import DragDialog from "./apps/drag-dialog.js";
 hooks();
 overrides();
 
-// This prevents namespace conflicts when files destructure foundry.utils
-// Can be removed in v13
-mergeObject = foundry.utils.mergeObject;
-setProperty = foundry.utils.setProperty;
-getProperty = foundry.utils.getProperty;
-hasProperty = foundry.utils.hasProperty;
-deepClone = foundry.utils.deepClone;
-isNewerVersion = foundry.utils.isNewerVersion;
-diffObject = foundry.utils.isNewerVersion;
-isEmpty = foundry.utils.isEmpty;
+const forkhammer = {};
 
-warhammer = {};
-
-warhammer.utility = {
+forkhammer.utility = {
     log,
     error,
     findKey,
@@ -104,7 +94,7 @@ warhammer.utility = {
     registerPremiumModuleInitialization
 };
 
-warhammer.apps = {
+forkhammer.apps = {
     WarhammerScript,
     ItemDialog,
     ValueDialog,
@@ -134,7 +124,7 @@ warhammer.apps = {
     ContainerizedApp
 };
 
-warhammer.models = {
+forkhammer.models = {
     BaseWarhammerModel,
     BaseWarhammerActorModel,
     BaseWarhammerItemModel,
@@ -154,14 +144,17 @@ warhammer.models = {
 
 };
 
-warhammer.documents = {
+forkhammer.documents = {
     WarhammerActor,
     WarhammerItem,
     WarhammerRollTable,
     WarhammerChatMessage
 };
 
-globalThis.warhammer = warhammer;
+globalThis.forkhammer = forkhammer;
 
-window.customElements.define("filter-state", FilterStateElement);
-window.customElements.define("warhammer-checkbox", CheckboxElement);
+window.customElements.define("forkhammer-filter-state", FilterStateElement);
+window.customElements.define("forkhammer-checkbox", CheckboxElement);
+
+// Consumers may initialize immediately or wait until the public API is available.
+Hooks.callAll("forkhammerReady", forkhammer);

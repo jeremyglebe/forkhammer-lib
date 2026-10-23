@@ -1,4 +1,5 @@
-.warhammer.application.choice-config {
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
+.forkhammer.application.choice-config {
     .window-content > div {
         height: 100%;
     }
@@ -38,7 +39,7 @@
     }
 }
 
-.warhammer.choice-option {
+.forkhammer.choice-option {
     .filters {
         button {
             width: 5rem;

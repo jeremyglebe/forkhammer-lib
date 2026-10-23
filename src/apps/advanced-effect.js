@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 const { ApplicationV2 } = foundry.applications.api;
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -6,7 +7,7 @@ export default class AdvancedEffectConfig extends HandlebarsApplicationMixin(App
 
     static DEFAULT_OPTIONS = {
         tag: "form",
-        classes: ["advanced-effect", "warhammer"],
+        classes: ["advanced-effect", "forkhammer"],
         window: {
             resizable : true,
             title : "WH.AdvancedConfig",
@@ -27,7 +28,7 @@ export default class AdvancedEffectConfig extends HandlebarsApplicationMixin(App
     };
 
     static PARTS = {
-        form : {scrollable: [""], template : "modules/warhammer-lib/templates/effect/effect-advanced-config.hbs"}
+        form : {scrollable: [""], template : "modules/forkhammer-lib/templates/effect/effect-advanced-config.hbs"}
     };
 
     constructor(document, options)

@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import { localize, log, format } from "../util/utility";
 
 
@@ -31,7 +32,7 @@ export default class WarhammerModuleUpdater extends Dialog
 
     static async create(module)
     {
-        let html = await foundry.applications.handlebars.renderTemplate("modules/warhammer-lib/templates/modules/module-updater.hbs", module);
+        let html = await foundry.applications.handlebars.renderTemplate("modules/forkhammer-lib/templates/modules/module-updater.hbs", module);
 
         return new this(module, html);
     }

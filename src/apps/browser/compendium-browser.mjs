@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import * as Filter from "./filter.mjs";
 import CompendiumBrowserSettingsConfig from "./compendium-browser-settings.mjs";
 import WarhammerSheetMixinV2 from "../../sheets/mixin.js";
@@ -115,36 +116,36 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
     tabs: {
       id: "tabs",
       classes: ["tabs", "tabs-left"],
-      template: "modules/warhammer-lib/templates/apps/browser/browser-tabs.hbs"
+      template: "modules/forkhammer-lib/templates/apps/browser/browser-tabs.hbs"
     },
     search: {
       id: "sidebar-search",
       classes: ["filter-element"],
       container: {id: "sidebar", classes: ["sidebar"]},
-      template: "modules/warhammer-lib/templates/apps/browser/browser-sidebar-search.hbs"
+      template: "modules/forkhammer-lib/templates/apps/browser/browser-sidebar-search.hbs"
     },
     types: {
       id: "sidebar-types",
       container: {id: "sidebar", classes: ["sidebar"]},
-      template: "modules/warhammer-lib/templates/apps/browser/browser-sidebar-types.hbs"
+      template: "modules/forkhammer-lib/templates/apps/browser/browser-sidebar-types.hbs"
     },
     filters: {
       id: "sidebar-filters",
       container: {id: "sidebar", classes: ["sidebar"]},
-      template: "modules/warhammer-lib/templates/apps/browser/browser-sidebar-filters.hbs",
-      templates: ["modules/warhammer-lib/templates/apps/browser/browser-sidebar-filter-set.hbs"]
+      template: "modules/forkhammer-lib/templates/apps/browser/browser-sidebar-filters.hbs",
+      templates: ["modules/forkhammer-lib/templates/apps/browser/browser-sidebar-filter-set.hbs"]
     },
     results: {
       id: "results",
       classes: ["results"],
-      template: "modules/warhammer-lib/templates/apps/browser/browser-results.hbs",
-      templates: ["modules/warhammer-lib/templates/apps/browser/browser-entry.hbs"],
+      template: "modules/forkhammer-lib/templates/apps/browser/browser-results.hbs",
+      templates: ["modules/forkhammer-lib/templates/apps/browser/browser-entry.hbs"],
       scrollable: [""]
     },
     footer: {
       id: "footer",
       classes: ["footer"],
-      template: "modules/warhammer-lib/templates/apps/browser/browser-footer.hbs"
+      template: "modules/forkhammer-lib/templates/apps/browser/browser-footer.hbs"
     },
   };
 
@@ -331,7 +332,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
     super._configureRenderOptions(options);
     if (options.isFirstRender) {
       const tab = this.constructor.TABS.find(t => t.tab === this.options.tab);
-      if (tab) foundry.utils.setProperty(options, "warhammer.browser.types", tab.types);
+      if (tab) foundry.utils.setProperty(options, "forkhammer.browser.types", tab.types);
     }
   }
 
@@ -424,7 +425,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
     context.isLocked.filters = ("additional" in this.options.filters.locked);
     context.isLocked.types = ("types" in this.options.filters.locked) || context.isLocked.filters;
     context.isLocked.documentClass = ("documentClass" in this.options.filters.locked) || context.isLocked.types;
-    const types = foundry.utils.getProperty(options, "warhammer.browser.types") ?? [];
+    const types = foundry.utils.getProperty(options, "forkhammer.browser.types") ?? [];
 
     if (partId === "types") {
       context.showTypes = (types.length !== 1) || (types[0] === "physical");
@@ -561,7 +562,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
       displaySelection: this.displaySelection,
       selected: this.#selected.has(uuid)
     };
-    const html = await foundry.applications.handlebars.renderTemplate("modules/warhammer-lib/templates/apps/browser/browser-entry.hbs", context);
+    const html = await foundry.applications.handlebars.renderTemplate("modules/forkhammer-lib/templates/apps/browser/browser-entry.hbs", context);
     const template = document.createElement("template");
     template.innerHTML = html;
     const element = template.content.firstElementChild;
@@ -572,7 +573,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
         <i class="fa-solid fa-spinner fa-spin-pulse" inert></i>
       </section>
     `;
-    element.dataset.tooltipClass = "warhammer warhammer-tooltip item-tooltip";
+    element.dataset.tooltipClass = "forkhammer forkhammer-tooltip item-tooltip";
     element.dataset.tooltipDirection ??= "RIGHT";
     */
     return element;
@@ -623,7 +624,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
       obj[k.slugify({strict: true})] = v;
       return obj;
     }, {});
-    const filter = await foundry.applications.handlebars.renderTemplate("modules/warhammer-lib/templates/apps/browser/browser-sidebar-filter-set.hbs", {
+    const filter = await foundry.applications.handlebars.renderTemplate("modules/forkhammer-lib/templates/apps/browser/browser-sidebar-filter-set.hbs", {
       locked,
       value: locked,
       key: "source",
@@ -645,7 +646,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
     let {types} = target.dataset;
     types = types ? types.split(",") : [];
     this._applyTabFilters(tab);
-    this.render({parts: ["results", "filters", "types"], warhammer: {browser: {types}}, changedTab: true});
+    this.render({parts: ["results", "filters", "types"], forkhammer: {browser: {types}}, changedTab: true});
   }
 
   /* -------------------------------------------- */
@@ -699,8 +700,8 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
    */
   #adjustCheckboxStates(htmlElement) {
     for (const groupArea of htmlElement.querySelectorAll(".type-group")) {
-      const group = groupArea.querySelector(".type-group-header warhammer-checkbox");
-      const children = groupArea.querySelectorAll(".wrapper warhammer-checkbox");
+      const group = groupArea.querySelector(".type-group-header forkhammer-checkbox");
+      const children = groupArea.querySelectorAll(".wrapper forkhammer-checkbox");
       if (Array.from(children).every(e => e.checked)) {
         group.checked = true;
         group.indeterminate = false;
@@ -844,12 +845,12 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
 
     /**
      * Hook event that calls when a compendium browser is submitted with selected items.
-     * @function warhammer.compendiumBrowserSelection
+     * @function forkhammer.compendiumBrowserSelection
      * @memberof hookEvents
      * @param {CompendiumBrowser} browser  Compendium Browser application being submitted.
      * @param {Set<string>} selected       Set of document UUIDs that are selected.
      */
-    Hooks.callAll("warhammer.compendiumBrowserSelection", this, this.#selected);
+    Hooks.callAll("forkhammer.compendiumBrowserSelection", this, this.#selected);
   }
 
   /* -------------------------------------------- */
@@ -903,7 +904,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
       this.#adjustCheckboxStates(target.closest(".sidebar"));
     } else {
       target.indeterminate = false;
-      for (const child of target.closest(".type-group").querySelectorAll("warhammer-checkbox[value]")) {
+      for (const child of target.closest(".type-group").querySelectorAll("forkhammer-checkbox[value]")) {
         child.checked = target.checked;
         if (target.checked) this.#filters.types.add(child.defaultValue);
         else this.#filters.types.delete(child.defaultValue);
@@ -975,7 +976,7 @@ export default class CompendiumBrowser extends WarhammerSheetMixinV2(HandlebarsA
         && sources.has(p.collection)
 
         // If types are set and specified in compendium flag, only include those that include the correct types
-        && (!types.size || !p.metadata.flags.warhammer?.types || new Set(p.metadata.flags.warhammer.types).intersects(types)))
+        && (!types.size || !p.metadata.flags.forkhammer?.types || new Set(p.metadata.flags.forkhammer.types).intersects(types)))
 
       // Generate an index based on the needed fields
       .map(async p => await Promise.all((await p.getIndex({fields: Array.from(indexFields)}))

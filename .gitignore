@@ -2,3 +2,7 @@ node_modules
 foundryconfig.json
 build
 .idea
+dist/
+.foundry/
+.env
+.env.*

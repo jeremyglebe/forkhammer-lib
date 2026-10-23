@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import { format, systemConfig } from "../util/utility";
 import { WarhammerModuleContentHandler } from "./content-handler";
 import { localize } from "../util/utility";
@@ -22,13 +23,13 @@ export class WarhammerModuleInitializationV2 extends HandlebarsApplicationMixin(
             update : this.update,
             delete : this.delete
         },
-        classes : ["warhammer", "module-initializer"],
+        classes : ["forkhammer", "module-initializer"],
         id : "module-initializer"
     };
 
     static PARTS = {
         initializer : {
-            template: "modules/warhammer-lib/templates/modules/module-initialization.hbs"
+            template: "modules/forkhammer-lib/templates/modules/module-initialization.hbs"
         }
     };
 

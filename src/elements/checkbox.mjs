@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import AdoptedStyleSheetMixin from "./adopted-stylesheet-mixin.mjs";
 
 /**
@@ -22,7 +23,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
   /* -------------------------------------------- */
 
   /** @override */
-  static tagName = "warhammer-checkbox";
+  static tagName = "forkhammer-checkbox";
 
   /* -------------------------------------------- */
 

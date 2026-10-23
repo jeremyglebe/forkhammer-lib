@@ -1,10 +1,11 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 export default {
     badgeInfo : {
         img : "",
         notes : "",
         issues : "",
         wiki : "",
-        discord : "https://discord.gg/GrMcdeDHh8"
+        discord : ""
     },
 
     scriptTriggers : {

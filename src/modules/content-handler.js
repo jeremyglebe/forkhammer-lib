@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import { localize, log } from "../util/utility";
 
 
@@ -66,7 +67,7 @@ export class WarhammerModuleContentHandler
     {
         for(let pack of packs.map(p => game.packs.get(p))) 
         {
-            if (game[globalThis[pack.metadata.type].collectionName].contents.find(doc => doc.getFlag("warhammer-lib", "source") == this.module.id))
+            if (game[globalThis[pack.metadata.type].collectionName].contents.find(doc => doc.getFlag("forkhammer-lib", "source") == this.module.id))
             {
                 return true;
             }
@@ -79,7 +80,7 @@ export class WarhammerModuleContentHandler
         let root = game.modules.get(pack.metadata.packageName).flags.folder;
         root.type = pack.metadata.type;
         root._id = foundry.utils.randomID();
-        root.flags = {"warhammer-lib" : {source : this.module.id}};
+        root.flags = {"forkhammer-lib" : {source : this.module.id}};
         let packFolders = pack.folders.contents.map(f => f.toObject());
         for(let f of packFolders)
         {
@@ -87,7 +88,7 @@ export class WarhammerModuleContentHandler
             {
                 f.folder = root._id;
             }
-            foundry.utils.setProperty(f.flags, "warhammer-lib.source", this.module.id);
+            foundry.utils.setProperty(f.flags, "forkhammer-lib.source", this.module.id);
         }
         this.rootFolders[pack.metadata.id] = root._id;
         return CONFIG.Folder.documentClass.create(packFolders.concat(root), {keepId : true});
@@ -120,9 +121,9 @@ export class WarhammerModuleContentHandler
         {
             if (!d.folder)
             {
-                d.updateSource({folder : this.rootFolders[d.pack], flags : {"warhammer-lib" : {source : this.module.id}}});
+                d.updateSource({folder : this.rootFolders[d.pack], flags : {"forkhammer-lib" : {source : this.module.id}}});
             }
-            d.updateSource({flags : {"warhammer-lib" : {source : this.module.id}}});
+            d.updateSource({flags : {"forkhammer-lib" : {source : this.module.id}}});
             return d;
         });
     }
@@ -133,27 +134,27 @@ export class WarhammerModuleContentHandler
     async delete()
     {
         ui.notifications.notify(this.module.title + ": " + localize("WH.Initialization.DeletingScenes"));
-        let moduleScenes = game.scenes.filter(doc => doc.flags?.["warhammer-lib"]?.source == this.module.id);
+        let moduleScenes = game.scenes.filter(doc => doc.flags?.["forkhammer-lib"]?.source == this.module.id);
         CONFIG.Scene.documentClass.deleteDocuments(moduleScenes.map(doc => doc.id));
 
         ui.notifications.notify(this.module.title + ": " + localize("WH.Initialization.DeletingActors"));
-        let moduleActors = game.actors.filter(doc => doc.flags?.["warhammer-lib"]?.source == this.module.id && !doc.hasPlayerOwner);
+        let moduleActors = game.actors.filter(doc => doc.flags?.["forkhammer-lib"]?.source == this.module.id && !doc.hasPlayerOwner);
         CONFIG.Actor.documentClass.deleteDocuments(moduleActors.map(doc => doc.id));
 
         ui.notifications.notify(this.module.title + ": " + localize("WH.Initialization.DeletingItems"));
-        let moduleItems = game.items.filter(doc => doc.flags?.["warhammer-lib"]?.source == this.module.id);
+        let moduleItems = game.items.filter(doc => doc.flags?.["forkhammer-lib"]?.source == this.module.id);
         CONFIG.Item.documentClass.deleteDocuments(moduleItems.map(doc => doc.id));
 
         ui.notifications.notify(this.module.title + ": " + localize("WH.Initialization.DeletingJournals"));
-        let moduleJournals = game.journal.filter(doc => doc.flags?.["warhammer-lib"]?.source == this.module.id);
+        let moduleJournals = game.journal.filter(doc => doc.flags?.["forkhammer-lib"]?.source == this.module.id);
         CONFIG.JournalEntry.documentClass.deleteDocuments(moduleJournals.map(doc => doc.id));
 
         ui.notifications.notify(this.module.title + ": " + localize("WH.Initialization.DeletingTables"));
-        let moduleTables = game.tables.filter(doc => doc.flags?.["warhammer-lib"]?.source == this.module.id);
+        let moduleTables = game.tables.filter(doc => doc.flags?.["forkhammer-lib"]?.source == this.module.id);
         CONFIG.RollTable.documentClass.deleteDocuments(moduleTables.map(doc => doc.id));
 
         ui.notifications.notify(this.module.title + ": " + localize("WH.Initialization.DeletingFolders"));
-        let moduleFolders = game.folders.filter(doc => doc.flags?.["warhammer-lib"]?.source == this.module.id);
+        let moduleFolders = game.folders.filter(doc => doc.flags?.["forkhammer-lib"]?.source == this.module.id);
         CONFIG.Folder.documentClass.deleteDocuments(moduleFolders.map(doc => doc.id));
     }
     //#endregion
@@ -283,7 +284,7 @@ export class ModuleDocumentResolver extends HandlebarsApplicationMixin(Applicati
 {
     static DEFAULT_OPTIONS = {
         tag : "form",
-        classes : ["warhammer", "document-resolver"],
+        classes : ["forkhammer", "document-resolver"],
         window : {
             title : "WH.Initialization.ResolveDuplicates",
             resizable : true,
@@ -301,7 +302,7 @@ export class ModuleDocumentResolver extends HandlebarsApplicationMixin(Applicati
     };
 
     static PARTS = {
-        resolver : {template : "modules/warhammer-lib/templates/modules/document-resolver.hbs"},
+        resolver : {template : "modules/forkhammer-lib/templates/modules/document-resolver.hbs"},
         footer : {template : "templates/generic/form-footer.hbs"}
     };
 

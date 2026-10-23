@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 export class DocumentReferenceModel extends foundry.abstract.DataModel
 {
     static defineSchema() 
@@ -28,7 +29,7 @@ export class DocumentReferenceModel extends foundry.abstract.DataModel
             }
             else if (this.id)
             {
-                this._document = warhammer.utility.findItemId(this.id);
+                this._document = forkhammer.utility.findItemId(this.id);
             }
 
         }
@@ -77,7 +78,7 @@ export class DeferredReferenceModel extends DocumentReferenceModel
         }
         else if (this.id)
         {
-            this._document = warhammer.utility.findItemId(this.id);
+            this._document = forkhammer.utility.findItemId(this.id);
         }
 
         if (this._document instanceof Promise)

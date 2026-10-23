@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import AdvancedEffectConfig from "../apps/advanced-effect";
 import WarhammerEffectScriptEditor from "../apps/effect-script-editor";
 import WarhammerEffectShapeConfig from "../apps/effect-shape-config";
@@ -6,11 +7,11 @@ import { localize, systemConfig } from "../util/utility";
 export default class WarhammerActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig
 {
     systemTemplate = "";
-    changeKeysTemplate = "modules/warhammer-lib/templates/effect/change-key-options.hbs";
+    changeKeysTemplate = "modules/forkhammer-lib/templates/effect/change-key-options.hbs";
     _advancedConfig = null;
     
     static DEFAULT_OPTIONS = {
-        classes: ["warhammer"],
+        classes: ["forkhammer"],
         actions: {
             addScript : this._onAddScript,
             editScript : this._onEditScript,
@@ -30,7 +31,7 @@ export default class WarhammerActiveEffectConfig extends foundry.applications.sh
         details: {template: "templates/sheets/active-effect/details.hbs"},
         duration: {template: "templates/sheets/active-effect/duration.hbs"},
         changes: {template: "templates/sheets/active-effect/changes.hbs"},
-        scripts: {template: "modules/warhammer-lib/templates/effect/effect-scripts.hbs"},
+        scripts: {template: "modules/forkhammer-lib/templates/effect/effect-scripts.hbs"},
         footer: {template: "templates/generic/form-footer.hbs"}
     };
   
@@ -53,7 +54,7 @@ export default class WarhammerActiveEffectConfig extends foundry.applications.sh
     {
         await super._onRender(context);
 
-        let transferDataHTML = await foundry.applications.handlebars.renderTemplate("modules/warhammer-lib/templates/effect/effect-transfer-config.hbs", {system : this.document.system, document : this.document, hidden : this.hiddenProperties()});
+        let transferDataHTML = await foundry.applications.handlebars.renderTemplate("modules/forkhammer-lib/templates/effect/effect-transfer-config.hbs", {system : this.document.system, document : this.document, hidden : this.hiddenProperties()});
 
         // Replace transfer field with Effect Application data (used to derive transfer value)
         this.element.querySelector("[name='transfer']")?.closest(".form-group").remove();//replaceWith(transferDataHTML);

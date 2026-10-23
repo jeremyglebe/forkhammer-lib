@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 /**
  * Generic helper used to conveniently prompt for some basic input
  * Has the ability to provide preset values, turning the input element into a select element
@@ -9,7 +10,7 @@ import DraggableApp from "./draggable";
 export default class DragDialog extends DraggableApp(HandlebarsApplicationMixin(ApplicationV2))  
 {
     static DEFAULT_OPTIONS = {
-        classes: ["drag-dialog", "warhammer"],
+        classes: ["drag-dialog", "forkhammer"],
         tag : "form",
         form : {
             handler : this.submit,
@@ -32,7 +33,7 @@ export default class DragDialog extends DraggableApp(HandlebarsApplicationMixin(
 
     static PARTS = {
         form: {
-            template: "modules/warhammer-lib/templates/apps/dialog/drag-dialog.hbs",
+            template: "modules/forkhammer-lib/templates/apps/dialog/drag-dialog.hbs",
         }
     };
 

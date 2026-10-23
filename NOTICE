@@ -1,0 +1,31 @@
+Forkhammer Lib
+
+This project is a local fork of Warhammer Library by Moo Man.
+Upstream: https://github.com/moo-man/WarhammerLibrary-FVTT
+Baseline: release 3.5.1, commit 15076301ab1ed4325d237ed0a034d167426c9405.
+
+The upstream Apache License 2.0 is retained verbatim in LICENSE. Original source
+attribution comments, including references to adapted D&D5e components, remain
+with their respective files.
+
+Fork modifications: distinct Forkhammer package, runtime, settings, asset and
+custom-element namespaces; custom-system registration and local builds; Vue
+script-editor integration. This fork is independently maintained and is not an
+upstream Warhammer Library release. Official Warhammer systems continue to use
+Warhammer Library under its original package ID.
+
+Modified source files carry a Forkhammer Lib modification notice. The renamed
+entry point and stylesheet derive from src/warhammer-lib.js and
+styles/warhammer.scss; static/assets/forkhammer.png is the unmodified upstream
+asset under a distinct path. module.json, package.json and package-lock.json were
+modified for this fork's identity, local build, registration and Vue dependencies.
+static/lang/en.json was modified for fork branding and Vue editor accessibility.
+The original README is preserved verbatim in docs/Upstream-Integration.md.
+Upstream reporting endpoints and automatic publishing configuration were removed.
+
+The generated runtime also includes Vue runtime packages and Pinia under their
+respective MIT licenses. Full dependency copyright and permission notices are
+included in THIRD-PARTY-LICENSES.txt in each built module. That file is generated
+from the packages contributing code to the build, so dependency updates retain
+their corresponding notices. These dependencies do not change the upstream
+library's Apache-2.0 license.

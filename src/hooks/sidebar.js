@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import WarhammerBugReporter from "../modules/bug-report";
 import {systemConfig} from "../util/utility";
 /**
@@ -61,7 +62,7 @@ export function renderSettings(html)
     html.querySelector(".info .system").remove();
   
     const section = document.createElement("section");
-    section.classList.add("warhammer", "sidebar-info");
+    section.classList.add("forkhammer", "sidebar-info");
     section.innerHTML = `
       <h4 class="divider">${game.i18n.localize("WORLD.GameSystem")}</h4>
       <div class="system-badge">

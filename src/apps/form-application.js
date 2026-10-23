@@ -1,10 +1,11 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 // More closely aligns with old V1 FormApplication
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export class WHFormApplication extends HandlebarsApplicationMixin(ApplicationV2)
 {
     static DEFAULT_OPTIONS = {
         tag : "form",
-        classes : ["warhammer"],
+        classes : ["forkhammer"],
         window : {
             contentClasses: ["standard-form"]
         },

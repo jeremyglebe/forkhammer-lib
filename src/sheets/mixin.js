@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import WarhammerDiffEditor from "../apps/diff-editor";
 import WarhammerRichEditor from "../apps/rich-editor";
 import addSheetHelpers from "../util/sheet-helpers";
@@ -15,7 +16,7 @@ const WarhammerSheetMixinV2 = (cls) => class extends cls
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ["warhammer"],
+        classes: ["forkhammer"],
         actions: {
             editEmbedded : this._onEditEmbeddedDoc,
             deleteEmbedded : this._onDeleteEmbeddedDoc,
@@ -232,7 +233,7 @@ const WarhammerSheetMixinV2 = (cls) => class extends cls
         {
             this.dragTab = true;
             let {tab, group} = ev.currentTarget.dataset;
-            await warhammer.utility.sleep(500);
+            await forkhammer.utility.sleep(500);
             if (this.dragTab)
             {
                 this.changeTab(tab, group);

@@ -1,6 +1,8 @@
-import { WHFormApplication } from "./form-application";
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
+import { VueFormApplicationMixin } from "./vue/form-application";
+import ScriptEditor from "./vue/ScriptEditor.vue";
 
-export default class WarhammerScriptEditor extends WHFormApplication
+export default class WarhammerScriptEditor extends VueFormApplicationMixin(foundry.applications.api.ApplicationV2)
 {    
     static DEFAULT_OPTIONS = {
         tag : "form",
@@ -23,12 +25,7 @@ export default class WarhammerScriptEditor extends WHFormApplication
         }
     };
 
-    static PARTS = {
-        editor : {template : "modules/warhammer-lib/templates/scripts/script-editor.hbs"},
-        footer : {
-            template : "templates/generic/form-footer.hbs"
-        }
-    };
+    static VUE_COMPONENT = ScriptEditor;
 
     static async wait(script, options={})
     {
@@ -45,6 +42,10 @@ export default class WarhammerScriptEditor extends WHFormApplication
         let context = await super._prepareContext();
         context.script = this._getScript();
         context.buttons = [{ type: "submit", label: "Submit", icon: "fa-solid fa-save" }];
+        context.labels = {
+            editor: game.i18n.localize("WH.ScriptEditor"),
+            submit: game.i18n.localize("Submit")
+        };
         return context;
     }
 

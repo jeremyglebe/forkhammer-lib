@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 const { ApplicationV2 } = foundry.applications.api;
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -18,7 +19,7 @@ export class ListPropertyForm extends HandlebarsApplicationMixin(ApplicationV2)
 
     static PARTS = {
         form: {
-            template: "modules/warhammer-lib/templates/apps/list-form.hbs"
+            template: "modules/forkhammer-lib/templates/apps/list-form.hbs"
         },
         footer : {
             template : "templates/generic/form-footer.hbs"

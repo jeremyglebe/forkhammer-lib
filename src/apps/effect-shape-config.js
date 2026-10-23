@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import {WHFormApplication} from "./form-application";
 
 export default class WarhammerEffectShapeConfig extends WHFormApplication
@@ -15,7 +16,7 @@ export default class WarhammerEffectShapeConfig extends WHFormApplication
     };
 
     static PARTS = {
-        scripts : {scrollable : [""], template : "modules/warhammer-lib/templates/effect/effect-shape-config.hbs", classes: ["standard-form"]}
+        scripts : {scrollable : [""], template : "modules/forkhammer-lib/templates/effect/effect-shape-config.hbs", classes: ["standard-form"]}
     };
 
     get scriptLocked()

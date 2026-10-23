@@ -1,3 +1,4 @@
+{{!-- Modified for Forkhammer Lib from Warhammer Library 3.5.1. --}}
 <div class="filter filter-set collapsible {{#if config.collapsed}}collapsed{{/if}}" data-filter-id="{{ key }}">
     <div class="filter-header">
         <label data-action="toggleCollapse">
@@ -9,15 +10,15 @@
         <div class="wrapper">
             {{~#if config.blank}}
             <label class="filter-choice">
-                <filter-state name="additional.{{ key }}._blank" value="{{ value._blank }}"
-                              {{ disabled locked._blank }}></filter-state>
+                <forkhammer-filter-state name="additional.{{ key }}._blank" value="{{ value._blank }}"
+                              {{ disabled locked._blank }}></forkhammer-filter-state>
                 <span>{{ localize config.blank }}</span>
             </label>
             {{/if~}}
             {{~#each config.choices}}
             <label class="filter-choice">
-                <filter-state name="additional.{{ ../key }}.{{ @key }}" value="{{ lookup ../value @key }}"
-                              {{ disabled (lookup ../locked @key) }}></filter-state>
+                <forkhammer-filter-state name="additional.{{ ../key }}.{{ @key }}" value="{{ lookup ../value @key }}"
+                              {{ disabled (lookup ../locked @key) }}></forkhammer-filter-state>
                 <span>{{ ifThen label label this }}</span>
             </label>
             {{/each~}}

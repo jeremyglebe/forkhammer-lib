@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import { WHFormApplication } from "./form-application";
 
 export class ChoiceOptionFormV2 extends WHFormApplication
@@ -9,7 +10,7 @@ export class ChoiceOptionFormV2 extends WHFormApplication
             submitOnChange: false,
             closeOnSubmit: true
         },
-        classes: ["choice-option", "warhammer"],
+        classes: ["choice-option", "forkhammer"],
         window: {
             resizable : true,
             title : "WH.Choice.Option",
@@ -22,7 +23,7 @@ export class ChoiceOptionFormV2 extends WHFormApplication
     };
 
     static PARTS = {
-        details : {template : "modules/warhammer-lib/templates/apps/choice-option.hbs"},
+        details : {template : "modules/forkhammer-lib/templates/apps/choice-option.hbs"},
         footer : {
             template : "templates/generic/form-footer.hbs"
         }

@@ -1,8 +1,9 @@
-.theme-light .warhammer.drag-dialog {
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
+.theme-light .forkhammer.drag-dialog {
   --border: var(--color-dark-6);
 }
 
-.warhammer.drag-dialog {
+.forkhammer.drag-dialog {
     --border: var(--color-cool-3);
 
     display: flex;

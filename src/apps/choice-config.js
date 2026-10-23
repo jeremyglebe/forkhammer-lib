@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import WarhammerSheetMixinV2 from "../sheets/mixin";
 import ChoiceDecision from "./choice-decision";
 import { ChoiceOptionFormV2 } from "./choice-option";
@@ -10,7 +11,7 @@ export default class ChoiceConfigV2 extends WarhammerSheetMixinV2(HandlebarsAppl
 
     static DEFAULT_OPTIONS = {
         tag : "form",
-        classes: ["choice-config", "warhammer"],
+        classes: ["choice-config", "forkhammer"],
         window: {
             resizable : true,
             title : "WH.Choice.Config",
@@ -45,7 +46,7 @@ export default class ChoiceConfigV2 extends WarhammerSheetMixinV2(HandlebarsAppl
     };
 
     static PARTS = {
-        choices : {scrollable: [".list-content"], template : "modules/warhammer-lib/templates/apps/choice-config.hbs"}
+        choices : {scrollable: [".list-content"], template : "modules/forkhammer-lib/templates/apps/choice-config.hbs"}
     };
 
     constructor(document, options)
@@ -248,7 +249,7 @@ export default class ChoiceConfigV2 extends WarhammerSheetMixinV2(HandlebarsAppl
 
                     // new WHItemDiffSheet(document, {diffUpdater : (newDiff) => 
                     // {
-                    //     warhammer.utility.log("Updating DIFF: ", this.document, index, newDiff);
+                    //     forkhammer.utility.log("Updating DIFF: ", this.document, index, newDiff);
                     //     options[index].diff = newDiff;
                     //     if (newDiff.name)
                     //     {

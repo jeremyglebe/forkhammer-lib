@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import DraggableApp from "./draggable";
 const { ApplicationV2 } = foundry.applications.api;
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -6,7 +7,7 @@ export default class WarhammerDiffEditor extends DraggableApp(HandlebarsApplicat
 {    
     static DEFAULT_OPTIONS = {
         tag : "form",
-        classes: ["diff-editor", "warhammer"],
+        classes: ["diff-editor", "forkhammer"],
         window: {
             resizable : true,
             title : "WH.DiffEditor",
@@ -29,7 +30,7 @@ export default class WarhammerDiffEditor extends DraggableApp(HandlebarsApplicat
     };
 
     static PARTS = {
-        diff : {template : "modules/warhammer-lib/templates/scripts/diff-editor.hbs", classes: ["diff"]},
+        diff : {template : "modules/forkhammer-lib/templates/scripts/diff-editor.hbs", classes: ["diff"]},
         footer : {
             template : "templates/generic/form-footer.hbs"
         }

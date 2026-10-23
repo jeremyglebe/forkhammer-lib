@@ -1,4 +1,5 @@
-.warhammer.roll-dialog {
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
+.forkhammer.roll-dialog {
     .dialog-modifiers {
         ul {
             padding: 0px;
@@ -8,7 +9,7 @@
 }
 
 
-.warhammer.roll-dialog-v2 
+.forkhammer.roll-dialog-v2
 {
 
     --modifier-bg : var(--color-cool-3);

@@ -1,9 +1,10 @@
-.theme-light .warhammer.item-dialog {
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
+.theme-light .forkhammer.item-dialog {
   --border: var(--color-dark-6);
   --selected: var(--color-warm-1);
 }
 
-.warhammer.item-dialog {
+.forkhammer.item-dialog {
 
     --border: var(--color-cool-3);
     --selected: var(--color-warm-3);

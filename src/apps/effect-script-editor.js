@@ -1,5 +1,7 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import { systemConfig } from "../util/utility";
 import WarhammerScriptEditor from "./script-editor";
+import EffectScriptEditor from "./vue/EffectScriptEditor.vue";
 
 export default class WarhammerEffectScriptEditor extends WarhammerScriptEditor
 {
@@ -19,13 +21,11 @@ export default class WarhammerEffectScriptEditor extends WarhammerScriptEditor
         },
     };
 
-    static PARTS = {
-        scripts : {scrollable : [""], template : "modules/warhammer-lib/templates/scripts/effect-script-editor.hbs"}
-    };
+    static VUE_COMPONENT = EffectScriptEditor;
 
     constructor(document, options={})
     {
-        super(options);
+        super(document, options);
         this.index = options.index;
         this.document = document;
     }
@@ -52,6 +52,23 @@ export default class WarhammerEffectScriptEditor extends WarhammerScriptEditor
         data.fields = this.document.system.schema.fields.scriptData.element.fields;
         data.script = this._getScript();
         data.scriptData = this._getScriptData();
+        data.isGM = game.user.isGM;
+        data.triggerOptions = Object.entries(systemConfig().scriptTriggers)
+            .map(([value, label]) => ({value, label: game.i18n.localize(label)}));
+        const labels = {
+            label: "Label", trigger: "WH.ScriptTrigger", runIfDisabled: "WH.RunIfDisabled",
+            runIfDisabledHint: "WH.RunIfDisabledHint", targeter: "WH.Targeter",
+            defending: "WH.DefendingAgainst", deleteEffect: "WH.DeleteEffect",
+            deleteEffectHint: "WH.DeleteEffectHint", showDuplicates: "WH.ShowDuplicates",
+            showDuplicatesHint: "WH.ShowDuplicatesHint", scriptLock: "WH.ScriptLock",
+            dialogScript: "WH.DialogScript", hideScript: "WH.HideScript",
+            activateScript: "WH.ActivateScript", submissionScript: "WH.SubmissionScript",
+            copyScript: "WH.CopyScript"
+        };
+        for (const [name, key] of Object.entries(labels))
+        {
+            data.labels[name] = game.i18n.localize(key);
+        }
         return data;
     }
 
@@ -144,7 +161,7 @@ export default class WarhammerEffectScriptEditor extends WarhammerScriptEditor
     static async _onToggleLock(ev, target)
     {
         this.unlocked = !target.checked;
-        this.render(true);
+        return this.render(true);
     }
 
     static async _onCopyScript(ev, target)

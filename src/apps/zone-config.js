@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import addSheetHelpers from "../util/sheet-helpers";
 import { localize } from "../util/utility";
 import { WHFormApplication } from "./form-application";
@@ -10,7 +11,7 @@ export class WarhammerZoneConfig extends WHFormApplication
     static DEFAULT_OPTIONS = 
         {
             tag: "form",
-            classes : ["warhammer", "zone-config"],
+            classes : ["forkhammer", "zone-config"],
             window : {
                 title : "WH.ZoneConfig",
                 contentClasses : ["standard-form"]
@@ -27,9 +28,9 @@ export class WarhammerZoneConfig extends WHFormApplication
         };
 
     static PARTS = {
-        tabs : {template : "modules/warhammer-lib/templates/partials/sheet-tabs.hbs"},
+        tabs : {template : "modules/forkhammer-lib/templates/partials/sheet-tabs.hbs"},
         config: { template: this.configTemplate },
-        effects : { template : "modules/warhammer-lib/templates/apps/zone-effects.hbs" },
+        effects : { template : "modules/forkhammer-lib/templates/apps/zone-effects.hbs" },
         footer : {
             template : "templates/generic/form-footer.hbs"
         }

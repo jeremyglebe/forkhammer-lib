@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import ChoiceDecision from "../../apps/choice-decision";
 import ItemDialog from "../../apps/item-dialog";
 import { systemConfig } from "../../util/utility";
@@ -228,7 +229,7 @@ export class ChoiceModel extends foundry.abstract.DataModel
         }
         else if (["id", "uuid"].includes(option.idType))
         {
-            let document = await warhammer.utility.findItemId(option.documentId);
+            let document = await forkhammer.utility.findItemId(option.documentId);
             if (includeDiff && !foundry.utils.isEmpty(option.diff))
             {
                 if (option.diff?.dereferenced)

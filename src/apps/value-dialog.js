@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 /**
  * Generic helper used to conveniently prompt for some basic input
  * Has the ability to provide preset values, turning the input element into a select element
@@ -8,7 +9,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export default class ValueDialog extends HandlebarsApplicationMixin(ApplicationV2)  
 {
     static DEFAULT_OPTIONS = {
-        classes: ["value-dialog", "warhammer"],
+        classes: ["value-dialog", "forkhammer"],
         tag : "form",
         form : {
             handler : this.submit,
@@ -28,7 +29,7 @@ export default class ValueDialog extends HandlebarsApplicationMixin(ApplicationV
 
     static PARTS = {
         form: {
-            template: "modules/warhammer-lib/templates/apps/dialog/value-dialog.hbs",
+            template: "modules/forkhammer-lib/templates/apps/dialog/value-dialog.hbs",
         },
         footer: {
             template: "templates/generic/form-footer.hbs"

@@ -1,5 +1,6 @@
-.theme-light .warhammer.actor.application,
-    .theme-light .warhammer.item.application {
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
+.theme-light .forkhammer.actor.application,
+    .theme-light .forkhammer.item.application {
 
     --attribute-input : transparent;
     --attribute-input-border : transparent;
@@ -23,8 +24,8 @@
     --hover-bg : var(--color-cool-5);
 }
 
-.warhammer.actor.application,
-.warhammer.item.application {
+.forkhammer.actor.application,
+.forkhammer.item.application {
 
     --attribute-input : var(--color-cool-4);
     --attribute-input-border : transparent;

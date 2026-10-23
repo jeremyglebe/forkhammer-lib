@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 const { ApplicationV2 } = foundry.applications.api;
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -5,7 +6,7 @@ export default class WarhammerRichEditor extends HandlebarsApplicationMixin(Appl
 {    
     static DEFAULT_OPTIONS = {
         tag : "form",
-        classes: ["rich-editor", "warhammer"],
+        classes: ["rich-editor", "forkhammer"],
         window: {
             resizable : true,
             title : "WH.RichEditor",
@@ -21,7 +22,7 @@ export default class WarhammerRichEditor extends HandlebarsApplicationMixin(Appl
     };
 
     static PARTS = {
-        choices : {template : "modules/warhammer-lib/templates/apps/rich-editor.hbs"}
+        choices : {template : "modules/forkhammer-lib/templates/apps/rich-editor.hbs"}
     };
 
     constructor(document, options)

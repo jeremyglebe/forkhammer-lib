@@ -1,9 +1,10 @@
+{{!-- Modified for Forkhammer Lib from Warhammer Library 3.5.1. --}}
 <div class="flexcol">
     {{#each additional}}
     {{#if (eq type "boolean")}}
     <div class="filter filter-boolean" data-filter-id="{{ key }}">
         <label>
-            <filter-state name="additional.{{ key }}" value="{{ value }}" {{ disabled locked }}></filter-state>
+            <forkhammer-filter-state name="additional.{{ key }}" value="{{ value }}" {{ disabled locked }}></forkhammer-filter-state>
             <span>{{ localize label }}</span>
         </label>
     </div>
@@ -21,7 +22,7 @@
         </div>
     </div>
     {{else if (eq type "set")}}
-        {{> "modules/warhammer-lib/templates/apps/browser/browser-sidebar-filter-set.hbs" }}
+        {{> "modules/forkhammer-lib/templates/apps/browser/browser-sidebar-filter-set.hbs" }}
     {{else if (eq type "text")}}
         <div class="filter filter-text form-group label-top" data-filter-id="{{ key }}">
             <label>

@@ -1,32 +1,45 @@
 {
-  "name": "warhammer-lib",
-  "version": "1.0.0",
-  "description": "Shared code between Warhammer FoundryVTT systems",
+  "name": "forkhammer-lib",
+  "version": "3.5.1-forkhammer.1",
+  "description": "A shared local fork of Warhammer Library for custom Foundry VTT systems.",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=development rollup -c --watch",
-    "release": "cross-env NODE_ENV=production rollup -c",
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "dev": "cross-env NODE_ENV=development rollup -c --watch",
+    "register-system": "node scripts/register-system.mjs",
+    "test": "node --test scripts/tests/*.test.mjs",
+    "check": "npm run build && npm test",
     "lint": "npx eslint ./src/**"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@eslint/js": "^9.6.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-replace": "^6.0.3",
     "@stylistic/eslint-plugin-js": "^2.3.0",
+    "@vue/compiler-sfc": "^3.5.44",
     "cross-env": "^7.0.3",
     "eslint": "^9.6.0",
     "eslint-plugin-jsdoc": "^48.5.2",
     "fs": "^0.0.1-security",
+    "happy-dom": "^20.14.6",
     "path": "^0.12.7",
     "rollup": "^4.24.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-jscc": "^2.0.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.85.1",
     "scss": "^0.2.4",
     "simple-git": "^3.36.0",
     "yargs": "^18.1.0"
+  },
+  "private": true,
+  "dependencies": {
+    "pinia": "^3.0.4",
+    "vue": "^3.5.44"
   }
 }

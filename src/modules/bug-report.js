@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 
 import {error, log, systemConfig} from "../util/utility";
 const { ApplicationV2 } = foundry.applications.api;
@@ -11,7 +12,7 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
 
     static DEFAULT_OPTIONS = {
         tag: "form",
-        classes: ["bug-report", "warhammer"],
+        classes: ["bug-report", "forkhammer"],
         window: {
             resizable: true,
             title: "WH.BugReporter.Title",
@@ -36,10 +37,15 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
     {
         super(app);
 
-        this.endpoint = "https://v3amewbngjjguio5j4nng5hcyq0fjona.lambda-url.us-east-2.on.aws/";
-        this.github = systemConfig().bugReporterConfig.repoEndpoint;
+        const config = systemConfig().bugReporterConfig;
+        if (!config?.repoEndpoint || !config?.submitEndpoint)
+        {
+            throw new Error("Forkhammer Lib bug reporting requires explicitly configured repository and submission endpoints.");
+        }
+        this.endpoint = config.submitEndpoint;
+        this.github = config.repoEndpoint;
         this._notifications = {};
-        this.settings = game.settings.get("warhammer-lib", "bugReporter");
+        this.settings = game.settings.get("forkhammer-lib", "bugReporter");
         this.loadingIssues = this.loadIssues();
     }
 
@@ -67,9 +73,9 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
     }
 
     static PARTS = {
-        tabs: { template: "modules/warhammer-lib/templates/partials/sheet-tabs.hbs" },
-        report: { template: "modules/warhammer-lib/templates/apps/reporter/report.hbs"},
-        issues: { template: "modules/warhammer-lib/templates/apps/reporter/issues.hbs" }
+        tabs: { template: "modules/forkhammer-lib/templates/partials/sheet-tabs.hbs" },
+        report: { template: "modules/forkhammer-lib/templates/apps/reporter/report.hbs"},
+        issues: { template: "modules/forkhammer-lib/templates/apps/reporter/issues.hbs" }
     };
 
     static TABS = {
@@ -88,7 +94,8 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
     static addBugReporterButton(html)
     {
         let sidebarInfo = html.querySelector(".sidebar-info");
-        if (sidebarInfo && systemConfig().bugReporterConfig?.repoEndpoint)
+        const config = systemConfig().bugReporterConfig;
+        if (sidebarInfo && config?.repoEndpoint && config?.submitEndpoint)
         {
             let button = document.createElement("button");
             button.textContent = "Submit Issue";
@@ -224,7 +231,7 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
                 title: data.title,
                 body: data.description,
                 contact: data.contact,
-                assignees: ["moo-man"],
+                assignees: systemConfig().bugReporterConfig.assignees ?? [],
                 labels: data.labels,
                 system: game.system.id
             })
@@ -259,9 +266,9 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
 
     recordIssue(number) 
     {
-        let bugReporterData = foundry.utils.deepClone(game.settings.get("warhammer-lib", "bugReporter"));
+        let bugReporterData = foundry.utils.deepClone(game.settings.get("forkhammer-lib", "bugReporter"));
         bugReporterData.issues.push(number);
-        game.settings.set("warhammer-lib", "bugReporter", bugReporterData).then(() => 
+        game.settings.set("forkhammer-lib", "bugReporter", bugReporterData).then(() =>
         {
             this.refreshIssues();
         });
@@ -270,7 +277,7 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
 
     async loadIssues() 
     {
-        warhammer.utility.log("Loading GitHub Issues...");
+        forkhammer.utility.log("Loading GitHub Issues...");
         try 
         {
 
@@ -297,9 +304,9 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
             }
             else 
             {
-                warhammer.utility.log("Skipping requests, issues already loaded");
+                forkhammer.utility.log("Skipping requests, issues already loaded");
             }
-            warhammer.utility.log("Issues: ", undefined, this.constructor.issues);
+            forkhammer.utility.log("Issues: ", undefined, this.constructor.issues);
         }
         catch(e)
         {
@@ -356,7 +363,7 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
     async getLatestVersions() 
     {
         let latest = {};
-        warhammer.utility.log("Checking Version Numbers...");
+        forkhammer.utility.log("Checking Version Numbers...");
         for (let key in systemConfig().premiumModules) 
         {
             if (key == game.system.id) 
@@ -369,18 +376,18 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
                 });
                 latest[key] = !foundry.utils.isNewerVersion(release.tag_name, game.system.version);
             }
-            else if (game.modules.get(key)) 
+            else if (game.modules.get(key) && systemConfig().bugReporterConfig.moduleManifestEndpoints?.[key])
             {
-                let manifest = await fetch(`https://foundry-c7-manifests.s3.us-east-2.amazonaws.com/${key}/module.json`).then(r => r.json()).catch(e => 
+                let manifest = await fetch(systemConfig().bugReporterConfig.moduleManifestEndpoints[key]).then(r => r.json()).catch(e =>
                 {
                     console.error("Could not fetch latest versions: " + e);
                     return latest;
                 });
                 latest[key] = !foundry.utils.isNewerVersion(manifest.version, game.modules.get(key).version);
             }
-            warhammer.utility.log(key + ": " + latest[key]);
+            forkhammer.utility.log(key + ": " + latest[key]);
         }
-        warhammer.utility.log("Version Status:", undefined, latest);
+        forkhammer.utility.log("Version Status:", undefined, latest);
         return latest;
     }
 
@@ -468,7 +475,7 @@ export default class WarhammerBugReporter extends HandlebarsApplicationMixin(App
             }
         }
 
-        game.settings.set("warhammer-lib", "bugReporter", {
+        game.settings.set("forkhammer-lib", "bugReporter", {
             contact : report.contact,
             PAT : report.PAT, 
         });

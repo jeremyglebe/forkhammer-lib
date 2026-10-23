@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 @use "./apps/item-dialog";
 @use "./apps/bug-reporter";
 @use "./apps/roll-dialog";
@@ -16,7 +17,7 @@
 @use "./apps/chat";
 @use "./apps/drag-dialog";
 
-.warhammer {
+.forkhammer {
   --tab-color : var(--color-cool-3);
 
   &.application {
@@ -273,7 +274,7 @@
 }
 
 
-.warhammer.sidebar-info {
+.forkhammer.sidebar-info {
     ul.links {
         flex: 1;
         margin: 0;

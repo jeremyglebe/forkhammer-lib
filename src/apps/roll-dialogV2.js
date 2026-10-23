@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import WarhammerScript from "../system/script";
 import { BaseDialogTooltips } from "../system/tooltips";
 import { localize } from "../util/utility";
@@ -21,7 +22,7 @@ export default class WarhammerRollDialogV2 extends HandlebarsApplicationMixin(Ap
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ["roll-dialog-v2", "warhammer"],
+        classes: ["roll-dialog-v2", "forkhammer"],
         tag : "form",
         form : {
             handler : this.submit,
@@ -39,7 +40,7 @@ export default class WarhammerRollDialogV2 extends HandlebarsApplicationMixin(Ap
 
     static PARTS = {
         modifiers : {
-            template : "modules/warhammer-lib/templates/partials/dialog-modifiers.hbs",
+            template : "modules/forkhammer-lib/templates/partials/dialog-modifiers.hbs",
         },
         footer : {
             template : "templates/generic/form-footer.hbs"

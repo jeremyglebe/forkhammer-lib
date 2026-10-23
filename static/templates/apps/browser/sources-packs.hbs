@@ -1,3 +1,4 @@
+{{!-- Modified for Forkhammer Lib from Warhammer Library 3.5.1. --}}
 {{#*inline ".packs"}}
 
 <fieldset class="card packs-section">
@@ -6,8 +7,8 @@
         {{#if (gt entries.length 1)}}
         <li class="all">
             <label class="checkbox">
-                <warhammer-checkbox name="all-{{ type }}" {{ checked checked }} data-type="pack"
-                                    {{#if indeterminate}}indeterminate{{/if}}></warhammer-checkbox>
+                <forkhammer-checkbox name="all-{{ type }}" {{ checked checked }} data-type="pack"
+                                    {{#if indeterminate}}indeterminate{{/if}}></forkhammer-checkbox>
                 <span class="title">{{ localize "all" }}</span>
             </label>
         </li>
@@ -15,7 +16,7 @@
         {{#each entries}}
         <li>
             <label class="checkbox">
-                <warhammer-checkbox name="{{ id }}" {{ checked checked }} data-type="pack"></warhammer-checkbox>
+                <forkhammer-checkbox name="{{ id }}" {{ checked checked }} data-type="pack"></forkhammer-checkbox>
                 <span class="title">{{ title }}</span>
             </label>
         </li>

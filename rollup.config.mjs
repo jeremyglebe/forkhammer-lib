@@ -1,50 +1,38 @@
-/* eslint-disable no-undef */
-import foundryPath from "./foundry-path.mjs";
-import copy from 'rollup-plugin-copy';
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
+import copy from "rollup-plugin-copy";
 import postcss from "rollup-plugin-postcss";
-import simpleGit from 'simple-git';
-import yargs from 'yargs';
-import fs from "fs";
-
-
-let args = yargs(process.argv.slice(2)).parse();
-
-let latest = args.configLatest;
-if (!latest)
-{
-    latest = await new Promise(resolve => {
-        simpleGit({baseDir: process.cwd()}).tags((err, tags) => resolve(tags.latest));
-    })
-}
-
-let manifest = JSON.parse(fs.readFileSync("./module.json"));
-let modulePath = foundryPath(manifest.id, manifest.compatibility.verified);
-
-console.log("Setting Version " + latest)
-console.log("Bundling to " + modulePath);
-
+import vue from "rollup-plugin-vue";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import { bundledLicenses } from "./scripts/bundled-licenses.mjs";
 
 export default {
-	input: ['src/warhammer-lib.js'],
-	output: {dir: modulePath},
-	plugins: [
-		copy({
-			targets : [
-				{src: "./module.json", dest : modulePath, transform: (contents) => contents.toString().replaceAll("@VERSION", latest)},
-				{src: "./static/*", dest : modulePath}
-			],
-            watch: process.env.NODE_ENV == "production" ? false : ["./static/**", "module.json"]
-		}),
-		postcss({
-			extract: "warhammer.css",
-			plugins : []
-		})
-	],
-	// output: rollupPaths.map(repoPath => {
-	// 	let outputPath = path.join(repoPath, 'warhammer-lib.js')
-	// 	return {
-	// 		file: outputPath,
-	// 		format: 'cjs'
-	// 	}
-	// })
+    input: "src/forkhammer-lib.js",
+    output: { file: "dist/forkhammer-lib.js", format: "iife", sourcemap: true },
+    plugins: [
+        replace({
+            preventAssignment: true,
+            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV ?? "production"),
+            __VUE_OPTIONS_API__: "true",
+            __VUE_PROD_DEVTOOLS__: "false",
+            __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: "false"
+        }),
+        vue({
+            css: false,
+            compilerOptions: { isCustomElement: tag => tag === "code-mirror" }
+        }),
+        nodeResolve({ browser: true }),
+        postcss({ extract: "forkhammer.css", plugins: [] }),
+        bundledLicenses(),
+        copy({
+            targets: [
+                { src: "./module.json", dest: "dist" },
+                { src: "./static/*", dest: "dist" },
+                { src: ["./LICENSE", "./NOTICE"], dest: "dist" }
+            ],
+            hook: "writeBundle",
+            copyOnce: false
+        })
+    ],
+    watch: { include: ["src/**", "styles/**", "static/**", "module.json"] }
 };

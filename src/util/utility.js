@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 
 /**
  *@returns {object} Returns the config object for the system
@@ -26,7 +27,7 @@ export function systemConfig()
  */
 export function log(message, force=false, args, options={}) 
 {
-    if (CONFIG.debug.warhammer || force)
+    if (CONFIG.debug.forkhammer || force)
     {
         let format = foundry.utils.deepClone(systemConfig().logFormat);
         format[0] = format[0].replace("@MESSAGE", message);
@@ -50,7 +51,7 @@ export function log(message, force=false, args, options={})
  */
 export function error(message, force=false, args) 
 {
-    if (CONFIG.debug.warhammer || force)
+    if (CONFIG.debug.forkhammer || force)
     {
         let format = foundry.utils.deepClone(systemConfig().logFormat);
         format[0] = format[0].replace("@MESSAGE", message);

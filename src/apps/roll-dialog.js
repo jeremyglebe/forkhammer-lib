@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import WarhammerScript from "../system/script";
 import { BaseDialogTooltips } from "../system/tooltips";
 import { localize } from "../util/utility";
@@ -22,7 +23,7 @@ export default class WarhammerRollDialog extends Application
     {
         const options = super.defaultOptions;
         options.resizable = true;
-        options.classes = options.classes.concat(["warhammer", "roll-dialog", "dialog"]);
+        options.classes = options.classes.concat(["forkhammer", "roll-dialog", "dialog"]);
         return options;
     }
  

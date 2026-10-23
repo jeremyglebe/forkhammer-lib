@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import { systemConfig } from "../util/utility";
 import CompendiumBrowserSettingsConfig from "../apps/browser/compendium-browser-settings.mjs";
 import { WarhammerModuleInitializationV2 } from "../modules/module-initializationV2";
@@ -12,7 +13,7 @@ export default function ()
 
     Hooks.on("init", () => 
     {
-        CONFIG.ux.ContextMenu = warhammer.apps.WarhammerContextMenu;
+        CONFIG.ux.ContextMenu = forkhammer.apps.WarhammerContextMenu;
 
         CONFIG.Region.documentClass.prototype.regionEffect = function () 
         {
@@ -175,7 +176,7 @@ export default function ()
             restricted: true
         });
 
-        game.settings.register("warhammer-lib", "bugReporter", {
+        game.settings.register("forkhammer-lib", "bugReporter", {
             name: "Bug Reporter Details",
             scope: "client",
             config: false,
@@ -183,7 +184,7 @@ export default function ()
         });
 
         // Compendium Browser source exclusion
-        game.settings.registerMenu("warhammer-lib", "packSourceConfiguration", {
+        game.settings.registerMenu("forkhammer-lib", "packSourceConfiguration", {
             name: "WH.CompendiumBrowser.Sources.Name",
             label: "WH.CompendiumBrowser.Sources.Label",
             hint: "WH.CompendiumBrowser.Sources.Hint",
@@ -198,7 +199,7 @@ export default function ()
             config: false,
             type: Object,
             default: {},
-            onChange: () => warhammer.apps.CompendiumBrowser.instance?.render(false, {changedTab: true})
+            onChange: () => forkhammer.apps.CompendiumBrowser.instance?.render(false, {changedTab: true})
         });
 
         game.settings.register(game.system.id, "compendiumWorldItems", {
@@ -206,10 +207,10 @@ export default function ()
             config: false,
             type: Boolean,
             default: true,
-            onChange: () => warhammer.apps.CompendiumBrowser.instance?.render(false, {changedTab: true})
+            onChange: () => forkhammer.apps.CompendiumBrowser.instance?.render(false, {changedTab: true})
         });
 
-        game.settings.register("warhammer-lib", "disableDragRuler", {
+        game.settings.register("forkhammer-lib", "disableDragRuler", {
             scope: "world",
             config: true,
             name: "WH.DisableDragRuler",

@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import WarhammerSheetMixinV2 from "../../sheets/mixin.js";
 
 const {ApplicationV2, HandlebarsApplicationMixin} = foundry.applications.api;
@@ -87,11 +88,11 @@ export default class CompendiumBrowserSettingsConfig extends WarhammerSheetMixin
   static PARTS = {
     sidebar: {
       id: "sidebar",
-      template: "modules/warhammer-lib/templates/apps/browser/sources-sidebar.hbs"
+      template: "modules/forkhammer-lib/templates/apps/browser/sources-sidebar.hbs"
     },
     packs: {
       id: "packs",
-      template: "modules/warhammer-lib/templates/apps/browser/sources-packs.hbs"
+      template: "modules/forkhammer-lib/templates/apps/browser/sources-packs.hbs"
     }
   };
 

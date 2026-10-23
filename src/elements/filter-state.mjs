@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 /**
  * Copied from DND5e: https://github.com/foundryvtt/dnd5e/blob/4.4.x/module/applications/components/filter-state.mjs
  *
@@ -15,7 +16,7 @@ export default class FilterStateElement extends foundry.applications.elements.Ab
   /* -------------------------------------------- */
 
   /** @override */
-  static tagName = "filter-state";
+  static tagName = "forkhammer-filter-state";
 
   /* -------------------------------------------- */
 

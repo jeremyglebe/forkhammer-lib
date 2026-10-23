@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 import { CombatHelpers } from "../util/combat-helpers";
 
 export default function() 
@@ -16,6 +17,6 @@ export default function()
 
     Hooks.on("renderCombatTracker", (app, html) => 
     {
-        warhammer.utility.replacePopoutTokens(html);
+        forkhammer.utility.replacePopoutTokens(html);
     });
 }

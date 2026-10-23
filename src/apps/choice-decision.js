@@ -1,3 +1,4 @@
+// Modified for Forkhammer Lib from Warhammer Library 3.5.1.
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ApplicationV2 } = foundry.applications.api;
 export default class ChoiceDecision extends HandlebarsApplicationMixin(ApplicationV2) 
@@ -5,7 +6,7 @@ export default class ChoiceDecision extends HandlebarsApplicationMixin(Applicati
 
     static DEFAULT_OPTIONS = {
         tag : "form",
-        classes: ["choice-decision", "warhammer"],
+        classes: ["choice-decision", "forkhammer"],
         form : {
             handler : this.submit,
             submitOnChange : false,
@@ -23,7 +24,7 @@ export default class ChoiceDecision extends HandlebarsApplicationMixin(Applicati
 
     static PARTS = {
         form: {
-            template: "modules/warhammer-lib/templates/apps/choice-decision.hbs"
+            template: "modules/forkhammer-lib/templates/apps/choice-decision.hbs"
         },
         footer : {
             template : "templates/generic/form-footer.hbs"
