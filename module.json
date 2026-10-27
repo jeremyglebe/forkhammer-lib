@@ -1,7 +1,7 @@
 {
   "id": "forkhammer-lib",
   "title": "Forkhammer Lib",
-  "description": "A shared local fork of Warhammer Library for custom Foundry VTT systems.",
+  "description": "A shared fork of Warhammer Library for custom Foundry VTT systems.",
   "version": "3.5.1.1",
   "authors": [
     {
@@ -56,5 +56,8 @@
       ]
     }
   },
-  "socket": true
+  "socket": true,
+  "url": "https://github.com/jeremyglebe/forkhammer-lib",
+  "manifest": "https://github.com/jeremyglebe/forkhammer-lib/releases/latest/download/module.json",
+  "download": "https://github.com/jeremyglebe/forkhammer-lib/releases/download/v3.5.1.1/forkhammer-lib.zip"
 }

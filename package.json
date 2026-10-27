@@ -1,7 +1,7 @@
 {
   "name": "forkhammer-lib",
   "version": "3.5.1-forkhammer.1",
-  "description": "A shared local fork of Warhammer Library for custom Foundry VTT systems.",
+  "description": "A shared fork of Warhammer Library for custom Foundry VTT systems.",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -41,5 +41,9 @@
   "dependencies": {
     "pinia": "^3.0.4",
     "vue": "^3.5.44"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremyglebe/forkhammer-lib.git"
   }
 }

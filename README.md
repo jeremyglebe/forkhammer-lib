@@ -1,6 +1,6 @@
 # Forkhammer Lib
 
-One shared local Foundry VTT framework for custom systems, forked from Moo Man's
+One shared Foundry VTT framework for custom systems, forked from Moo Man's
 [Warhammer Library](https://github.com/moo-man/WarhammerLibrary-FVTT) 3.5.1 at
 `15076301ab1ed4325d237ed0a034d167426c9405`. The upstream Apache-2.0 license and
 attributions are retained in `LICENSE` and `NOTICE`.
@@ -8,8 +8,8 @@ attributions are retained in `LICENSE` and `NOTICE`.
 This is a separate module, `forkhammer-lib`, with public API `globalThis.forkhammer`.
 It does not replace the installed `warhammer-lib`. Official Warhammer systems keep
 using their original library. Forkhammer serves custom systems from this single
-repository, rather than maintaining one fork per system. No remote publishing or
-update endpoint is configured.
+repository, rather than maintaining one fork per system. Public source and installable releases are hosted at
+[GitHub](https://github.com/jeremyglebe/forkhammer-lib).
 
 ## Local build
 
@@ -79,8 +79,14 @@ Consumers declare a required library relationship in their own system manifest:
 }
 ```
 
-There are deliberately no invented manifest/download URLs. Local installation and
-system registration are explicit until a real distribution destination is chosen.
+Install through **Add-on Modules → Install Module**, using:
+
+```text
+https://github.com/jeremyglebe/forkhammer-lib/releases/latest/download/module.json
+```
+
+Consuming systems can set that same URL on their required dependency relationship
+so Foundry can resolve the library. System registration is still explicit.
 
 ## Runtime contract
 
@@ -130,8 +136,10 @@ workflows are not configured for this fork.
 
 ## Maintenance
 
-Keep the fetch-only `upstream` remote and upstream history. No `origin`, remote
-creation, push, release publication, or deployment is implied. Review upstream
+Keep the `upstream` remote and upstream history. `origin` is the public Forkhammer
+repository. Release ZIPs contain the contents of `dist/` at their root, including
+LICENSE, NOTICE and THIRD-PARTY-LICENSES.txt. Publish both module.json and
+forkhammer-lib.zip as assets on the matching version tag. Review upstream
 changes explicitly and rebuild the fork before updating consumers. Preserve Apache
 licensing and third-party notices when distributing derived builds. Tests cover
 manifest isolation, built asset/API identity, local registration and the Vue editor's

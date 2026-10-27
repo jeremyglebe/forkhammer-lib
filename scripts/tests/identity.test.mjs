@@ -18,8 +18,8 @@ test("source manifest owns a distinct local identity and custom-system allowlist
   assert.match(manifest.version, /^\d+\.\d+\.\d+\.\d+$/);
   const [major, minor, patch, revision] = manifest.version.split(".");
   assert.equal(pkg.version, `${major}.${minor}.${patch}-forkhammer.${revision}`);
-  assert.equal(manifest.manifest, undefined);
-  assert.equal(manifest.download, undefined);
+  assert.equal(manifest.manifest, "https://github.com/jeremyglebe/forkhammer-lib/releases/latest/download/module.json");
+  assert.equal(manifest.download, `https://github.com/jeremyglebe/forkhammer-lib/releases/download/v${manifest.version}/forkhammer-lib.zip`);
   const systems = manifest.relationships.systems.map((system) => system.id);
   assert.ok(systems.includes("fvtt-template") && systems.includes("rifts"));
   assert.equal(new Set(systems).size, systems.length);
